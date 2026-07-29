@@ -2,208 +2,529 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Pronto | CheetaFlex™</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   
-  <!-- FAVICON -->
+  <!-- FAVICON "EE" ESCALONADO (Blanco / Verde Neón) -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230f172a'/><g transform='skewX(-14)' font-family='Arial Black, sans-serif' font-weight='900' font-size='62'><text x='24' y='64' fill='%23ffffff'>E</text><text x='58' y='76' fill='%2322c55e'>E</text></g></svg>">
-
+  
+  <title>CheetaSpeed™</title>
   <style>
     :root {
-      --mar-fondo: #0f172a;       
-      --mar-tarjeta: #1e293b;     
-      --selva: #22c55e;           
-      --cielo: #ffffff;           
-      --cielo-tenue: #94a3b8;     
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --accent: #22c55e;
+      --accent-hover: #16a34a;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --danger: #ef4444;
+      --warning: #eab308;
       --border: #334155;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
-
-    body {
-      background-color: var(--mar-fondo);
-      color: var(--cielo);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+    
+    html, body {
+      width: 100%;
       overflow-x: hidden;
     }
 
-    /* BANNER SUPERIOR */
-    .top-banner {
-      width: 100%;
-      padding: 16px 24px;
+    body { 
+      background-color: var(--bg-color); 
+      color: var(--text); 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      min-height: 100vh; 
+      padding: 16px; 
+    }
+    
+    .container { 
+      background-color: var(--card-bg); 
+      border: 1px solid var(--border); 
+      border-radius: 16px; 
+      width: 100%; 
+      max-width: 480px; 
+      padding: 24px; 
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5); 
+      position: relative; 
+    }
+    
+    /* HEADER */
+    .header { 
+      text-align: center; 
+      margin-bottom: 20px; 
+      padding-top: 18px;
+    }
+    
+    /* BOTÓN HOME */
+    .home-link {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      color: var(--text-muted);
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      background-color: rgba(15, 23, 42, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .nav-brand {
-      font-size: 1.2rem;
-      font-weight: 900;
-      font-style: italic;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background-color: #0f172a;
+      border: 1px solid var(--border);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      line-height: 1;
-      gap: 1px;
+      z-index: 10;
     }
 
-    .nav-brand .brand-cheeta { color: var(--cielo); transform: translateY(-1px); }
-    .nav-brand .brand-flex { color: var(--selva); transform: translateY(1px); }
-    .nav-brand .brand-tm {
-      font-size: 0.45rem;
+    .home-link:hover, .home-link:active {
+      color: #0f172a;
+      background-color: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .home-link svg {
+      width: 17px;
+      height: 17px;
+      fill: currentColor;
+    }
+
+    /* RESPONSIVE AUTO-STACKING */
+    @media (max-width: 420px) {
+      .container {
+        padding: 18px 16px;
+      }
+      .home-link {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-bottom: 12px;
+      }
+      .header {
+        padding-top: 0;
+      }
+    }
+
+    /* TÍTULO ESCALONADO E ITÁLICO */
+    .header h1 { 
+      font-size: clamp(1.6rem, 7vw, 2.1rem); 
+      font-weight: 900; 
+      font-style: italic;
+      display: inline-flex; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 2px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .header h1 span.brand-cheeta { 
+      color: #ffffff; 
+      transform: translateY(-1.5px);
+      display: inline-block;
+    }
+
+    .header h1 span.brand-speed { 
+      color: var(--accent); 
+      transform: translateY(1.5px);
+      display: inline-block;
+    }
+
+    .brand-tm {
+      font-size: 0.45em;
       font-weight: 700;
       font-style: normal;
-      color: var(--cielo-tenue);
-      opacity: 0.6;
+      vertical-align: super;
       margin-left: 2px;
-      align-self: flex-start;
+      letter-spacing: 0px;
+      color: var(--text-muted);
+      opacity: 0.6;
+    }
+    
+    .header p { 
+      font-size: clamp(0.7rem, 3.4vw, 0.9rem); 
+      color: var(--text-muted); 
+      white-space: nowrap; 
+      overflow: hidden; 
+      text-overflow: ellipsis; 
     }
 
-    .home-btn {
-      background-color: var(--mar-tarjeta);
-      border: 1px solid var(--border);
-      color: var(--cielo);
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
+    .vehicle-selector { display: flex; background: #0f172a; padding: 4px; border-radius: 10px; margin-bottom: 16px; border: 1px solid var(--border); }
+    .type-btn { flex: 1; padding: 8px; border: none; background: transparent; color: var(--text-muted); font-weight: 700; font-size: 0.85rem; cursor: pointer; border-radius: 6px; transition: all 0.2s; }
+    .type-btn.active { background-color: var(--accent); color: #000; }
+
+    .form-group { 
+      margin-bottom: 16px; 
+      position: relative;
+    }
+
+    label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: #cbd5e1; }
+    select, input { width: 100%; padding: 12px; background-color: #0f172a; border: 1px solid var(--border); border-radius: 8px; color: #fff; font-size: 0.95rem; outline: none; }
+    select:focus, input:focus { border-color: var(--accent); }
+
+    /* BOTONES DE ACCIÓN */
+    .action-buttons {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      transition: all 0.25s ease;
-      cursor: pointer;
-    }
-
-    .home-btn svg {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
-      transition: transform 0.2s ease;
-    }
-
-    .home-btn:hover {
-      background-color: var(--selva);
-      border-color: var(--selva);
-      color: var(--mar-fondo);
-      transform: translateY(-2px);
-      box-shadow: 0 0 15px rgba(34, 197, 94, 0.35);
-    }
-
-    .home-btn:hover svg {
-      transform: scale(1.1);
-    }
-
-    /* CONTENEDOR PRINCIPAL / MENSAJE */
-    .main-content {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 16px;
-    }
-
-    .message-card {
-      background-color: var(--mar-tarjeta);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 40px 30px;
-      text-align: center;
-      max-width: 480px;
-      width: 100%;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .emoji-3d-img {
-      width: 56px;
-      height: 56px;
-      object-fit: contain;
-      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.35));
-      margin-bottom: 4px;
-      user-select: none;
-      -webkit-user-drag: none;
-    }
-
-    h1 {
-      font-size: clamp(1.5rem, 4vw, 1.9rem);
-      font-weight: 900;
-      color: var(--cielo);
-      letter-spacing: -0.5px;
-    }
-
-    p {
-      color: var(--cielo-tenue);
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-
-    .btn-action {
+      gap: 8px;
       margin-top: 10px;
-      background-color: transparent;
-      border: 1px solid var(--selva);
-      color: var(--selva);
-      padding: 10px 20px;
-      border-radius: 12px;
+    }
+
+    .submit-btn { 
+      flex: 1;
+      padding: 14px; 
+      background-color: var(--accent); 
+      color: #000; 
+      border: none; 
+      border-radius: 8px; 
+      font-weight: 700; 
+      font-size: 0.95rem; 
+      cursor: pointer; 
+      transition: background-color 0.2s; 
+    }
+    .submit-btn:hover { background-color: var(--accent-hover); }
+
+    .reset-btn {
+      padding: 14px 16px;
+      background-color: #0f172a;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      border-radius: 8px;
       font-weight: 700;
       font-size: 0.9rem;
-      text-decoration: none;
-      transition: all 0.25s ease;
-      display: inline-flex;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      gap: 6px;
     }
 
-    .btn-action:hover {
-      background-color: var(--selva);
-      color: var(--mar-fondo);
-      box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+    .reset-btn:hover {
+      border-color: #ef4444;
+      color: #ef4444;
+      background-color: rgba(239, 68, 68, 0.05);
     }
+
+    /* RESULTADOS Y MÉTRICAS */
+    .result-box { display: none; margin-top: 24px; padding: 20px; border-radius: 12px; text-align: center; animation: fadeIn 0.3s ease-in-out; background-color: rgba(34, 197, 94, 0.1); border: 1px solid var(--accent); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .result-title { font-size: 1.1rem; font-weight: 800; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.3px; color: var(--accent); }
+    
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .metric-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border);
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    .metric-value { font-size: 1.25rem; font-weight: 900; color: #fff; }
+    .metric-label { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
+
+    .perf-box {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      text-align: left;
+      line-height: 1.4;
+    }
+
+    .perf-box h4 {
+      color: var(--accent);
+      font-size: 0.82rem;
+      margin-bottom: 4px;
+    }
+
+    .hidden { display: none !important; }
+
+    /* AVISO LEGAL EXTERNO */
+    .disclaimer-external { 
+      display: none; 
+      font-size: 0.72rem; 
+      color: var(--text-muted); 
+      line-height: 1.4; 
+      text-align: justify; 
+      margin-top: 14px; 
+      padding: 0 4px;
+      opacity: 0.85;
+    }
+
+    .footer { text-align: center; margin-top: 24px; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border); padding-top: 16px; }
+
+    .footer-links { display: flex; justify-content: center; gap: 14px; margin-top: 4px; flex-wrap: wrap; }
+    .footer-link {
+      color: var(--text-muted);
+      font-weight: 600;
+      text-decoration: underline;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: #fff; }
+    
+    .version-tag { font-size: 0.65rem; color: #475569; font-weight: 600; letter-spacing: 0.5px; margin-top: 12px; }
+
+    /* MODALES */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .modal-content {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      max-width: 440px;
+      width: 100%;
+      padding: 20px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+    .modal-header h3 { font-size: 1rem; color: var(--accent); }
+    .close-btn { background: none; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer; font-weight: bold; }
+    .close-btn:hover { color: #fff; }
+    .modal-body { font-size: 0.8rem; line-height: 1.5; color: #cbd5e1; }
+    .modal-body h4 { font-size: 0.85rem; color: #fff; margin-top: 10px; margin-bottom: 4px; }
+    .modal-body p { margin-bottom: 8px; text-align: justify; }
+    .modal-body ul { padding-left: 16px; margin-bottom: 8px; }
   </style>
 </head>
 <body>
 
-  <!-- BANNER SUPERIOR -->
-  <header class="top-banner">
-    <a href="https://cheetaflex.com" class="nav-brand">
-      <span class="brand-cheeta">CHEETA</span><span class="brand-flex">FLEX</span><sup class="brand-tm">TM</sup>
-    </a>
-
-    <a href="https://cheetaflex.com" class="home-btn" aria-label="Volver al inicio">
-      <!-- Icono de casita (Home) -->
+  <div class="container">
+    <!-- ÍCONO DE CASA -->
+    <a href="https://cheetaflex.com/#herramientas" class="home-link" title="Volver a CheetaFlex.com">
       <svg viewBox="0 0 24 24">
         <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
       </svg>
     </a>
-  </header>
 
-  <!-- CONTENIDO CENTRAL -->
-  <main class="main-content">
-    <div class="message-card">
-      <img 
-        src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Wrench/3D/wrench_3d.png" 
-        alt="Herramienta 3D" 
-        class="emoji-3d-img" 
-        loading="lazy"
-        onerror="this.onerror=null; this.src='https://em-content.zobj.net/source/microsoft-3d-fluent/3591/wrench_1f527.png';"
-      >
-      <h1>ESTAMOS TRABAJANDO</h1>
-      <p>Gracias por visitarnos.</p>
-      
-      <a href="https://cheetaflex.com" class="btn-action">Volver al Hub principal</a>
+    <div class="header">
+      <h1>
+        <span class="brand-cheeta">CHEETA</span><span class="brand-speed">SPEED</span><span class="brand-tm">™</span>
+      </h1>
+      <p>Calculadora de Octanaje y Rendimiento Térmico</p>
     </div>
-  </main>
 
+    <!-- SELECTOR DE VEHÍCULO -->
+    <div class="vehicle-selector">
+      <button class="type-btn active" id="btn-car" onclick="setVehicleType('car')">🚗 Carro/SUV</button>
+      <button class="type-btn" id="btn-moto" onclick="setVehicleType('moto')">🏍️ Motocicleta</button>
+    </div>
+
+    <!-- GASOLINA BASE -->
+    <div class="form-group">
+      <label for="gas-base-select">Gasolina Base Utilizada:</label>
+      <select id="gas-base-select">
+        <option value="87" selected>Regular / Corriente (~87 RON / AKI)</option>
+        <option value="91">Súper / Premium (~91-95 RON / AKI)</option>
+      </select>
+    </div>
+
+    <!-- PORCENTAJE DE ETANOL -->
+    <div class="form-group">
+      <label for="blend-select">Mezcla con Etanol:</label>
+      <select id="blend-select">
+        <option value="10" selected>E10 (10% Etanol)</option>
+        <option value="20">E20 (20% Etanol)</option>
+        <option value="30">E30 (30% Etanol - Mezcla Mezclas Pro)</option>
+        <option value="85">E85 (85% Etanol - FlexFuel / Racing)</option>
+      </select>
+    </div>
+
+    <!-- TIPO DE MOTOR / ASPIRACIÓN -->
+    <div class="form-group">
+      <label for="engine-type-select">Tipo de Motor / Aspiración:</label>
+      <select id="engine-type-select">
+        <option value="na" selected>Atmosférico / Normal (Aspiración Natural)</option>
+        <option value="turbo">Turbo / Supercargado / Alta Compresión</option>
+      </select>
+    </div>
+
+    <!-- BOTONES DE ACCIÓN -->
+    <div class="action-buttons">
+      <button class="submit-btn" onclick="calcularSpeed()">EVALUAR OCTANAJE</button>
+      <button class="reset-btn hidden" id="resetBtn" onclick="resetForm()" title="Reiniciar cálculo">↺ Reset</button>
+    </div>
+
+    <!-- RESULTADOS -->
+    <div id="result-box" class="result-box">
+      <div class="result-title">🚀 Diagnóstico de Alto Rendimiento</div>
+      
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-value" id="val-octane">0 RON</div>
+          <div class="metric-label">Octanaje Estimado</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value" id="val-cooling">+0%</div>
+          <div class="metric-label">Enfriamiento Térmico</div>
+        </div>
+      </div>
+
+      <div class="perf-box" id="perf-desc">
+        <!-- Detalles dinámicos -->
+      </div>
+    </div>
+
+    <!-- AVISO LEGAL EXTERNO -->
+    <p id="disclaimer" class="disclaimer-external">
+      ⚠️ <b>Aviso Legal:</b> CheetaSpeed™ estima incrementos de octanaje e índice antidetonante mediante ecuaciones teóricas basadas en la mezcla de hidrocarburos base y etanol anhidro/hidratado (RON 108+). Las ganancias reales de torque y protección de tiempo de chispa dependen de la ECU, mapa de inyección y estado mecánico de cada vehículo.
+    </p>
+
+    <div class="footer">
+      <div class="footer-links">
+        <span class="footer-link" onclick="openModal('faq')">Preguntas Frecuentes</span>
+        <span class="footer-link" onclick="openModal('privacy')">Privacidad</span>
+        <span class="footer-link" onclick="reportarError()">Reporta un Problema</span>
+      </div>
+
+      <div class="version-tag">v.0.0.1</div>
+    </div>
+  </div>
+
+  <!-- MODAL FAQS Y PRIVACIDAD -->
+  <div id="info-modal" class="modal-backdrop" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">Título</h3>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <!-- Contenido dinámico -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentVehicle = 'car';
+
+    function setVehicleType(type) {
+      currentVehicle = type;
+      document.getElementById('btn-car').className = type === 'car' ? 'type-btn active' : 'type-btn';
+      document.getElementById('btn-moto').className = type === 'moto' ? 'type-btn active' : 'type-btn';
+      ocultarResultado();
+    }
+
+    function ocultarResultado() {
+      document.getElementById('result-box').style.display = 'none';
+      document.getElementById('disclaimer').style.display = 'none';
+      document.getElementById('resetBtn').classList.add('hidden');
+    }
+
+    function resetForm() {
+      setVehicleType('car');
+      document.getElementById('gas-base-select').value = "87";
+      document.getElementById('blend-select').value = "10";
+      document.getElementById('engine-type-select').value = "na";
+      ocultarResultado();
+    }
+
+    function calcularSpeed() {
+      const baseOctane = parseFloat(document.getElementById('gas-base-select').value);
+      const pctEtanol = parseFloat(document.getElementById('blend-select').value) / 100;
+      const engineType = document.getElementById('engine-type-select').value;
+
+      // El etanol puro tiene un octanaje de mezclado efectivo (Blending Octane Value) de ~108 a 113 RON
+      const ethanolBlendingOctane = 108;
+      
+      // Cálculo de octanaje final ponderado
+      const finalOctane = (baseOctane * (1 - pctEtanol)) + (ethanolBlendingOctane * pctEtanol);
+      
+      // Calor latente de vaporización del etanol genera enfriamiento de la carga
+      const coolingPct = Math.round(pctEtanol * 35); // Hasta ~30-35% más frío en E85
+
+      document.getElementById('val-octane').innerText = finalOctane.toFixed(1) + " RON";
+      document.getElementById('val-cooling').innerText = "+" + (coolingPct > 0 ? coolingPct : 3) + "%";
+
+      let beneficioTexto = "";
+
+      if (engineType === 'turbo') {
+        beneficioTexto = `
+          <h4>⚡ Rendimiento Óptimo en Turbo / Alta Compresión:</h4>
+          El incremento a <b>${finalOctane.toFixed(1)} RON</b> previene de forma absoluta la detonación prematura (*knocking*). Tu ECU no necesitará atrasar el tiempo de chispa, permitiendo mantener la presión de sobrealimentación (*boost*) máxima con temperaturas de aire entrante más frías.
+        `;
+      } else {
+        beneficioTexto = `
+          <h4>🔥 Respuesta y Protección en Motor Atmosférico:</h4>
+          Al subir a <b>${finalOctane.toFixed(1)} RON</b>, la cámara de combustión trabaja más fresca. Notarás una aceleración más suave y progresiva, protegiendo bielas y pistones del desgaste por calor extremo en trayectos largos o tráfico pesado.
+        `;
+      }
+
+      if (currentVehicle === 'moto') {
+        beneficioTexto += `<p style="margin-top: 6px; font-size: 0.75rem; color: #94a3b8;">🏍️ <b>Nota Motera:</b> En motores monocilíndricos o refrigerados por aire, el efecto enfriador del etanol reduce significativamente la fatiga térmica del bloque en ralentí.</p>`;
+      }
+
+      document.getElementById('perf-desc').innerHTML = beneficioTexto;
+
+      document.getElementById('result-box').style.display = 'block';
+      document.getElementById('disclaimer').style.display = 'block';
+      document.getElementById('resetBtn').classList.remove('hidden');
+    }
+
+    function reportarError() {
+      const formUrl = "https://forms.gle/SChB6HrnJxaYc9dUA";
+      window.open(formUrl, '_blank');
+    }
+
+    function openModal(type) {
+      const modal = document.getElementById('info-modal');
+      const title = document.getElementById('modal-title');
+      const body = document.getElementById('modal-body');
+
+      if (type === 'faq') {
+        title.innerText = "Preguntas Frecuentes";
+        body.innerHTML = `
+          <h4>1. ¿Por qué el etanol sube el octanaje de la gasolina?</h4>
+          <p>El etanol posee una estructura molecular oxigenada con un índice antidetonante natural de ~108 RON, superior a las gasolinas comerciales más costosas.</p>
+
+          <h4>2. ¿Qué es el "Efecto Enfriador" (Cooling Effect)?</h4>
+          <p>El etanol requiere más calor del entorno para evaporarse dentro del múltiple de admisión. Esto enfría la mezcla aire/combustible entrante, haciendo la carga más densa y reduciendo la temperatura general del motor.</p>
+
+          <h4>3. ¿Afecta mi sensor Knock (cascabeleo)?</h4>
+          <p>Al contrario: al evitar que la mezcla explote antes de tiempo por compresión o calor, el sensor de cascabeleo no enviará señales a la ECU para cortar potencia.</p>
+        `;
+      } else if (type === 'privacy') {
+        title.innerText = "Política de Privacidad";
+        body.innerHTML = `
+          <p>En <b>CheetaFlex™</b> respetamos tu privacidad:</p>
+          <ul>
+            <li><b>Sin almacenamiento:</b> Las evaluaciones no guardan ningún registro personal ni datos de vehículos.</li>
+            <li><b>Ejecución Local:</b> Los algoritmos corren enteramente en tu propio navegador.</li>
+            <li><b>Cero Rastreo:</b> Sin almacenamiento de rastreadores ni cookies de terceros.</li>
+          </ul>
+        `;
+      }
+
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('info-modal').style.display = 'none';
+    }
+
+    function closeModalOnBackdrop(e) {
+      if (e.target.id === 'info-modal') closeModal();
+    }
+
+    setVehicleType('car');
+  </script>
 </body>
 </html>
