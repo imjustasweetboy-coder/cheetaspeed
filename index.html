@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Pronto | CheetaFlex™</title>
+  
+  <!-- FAVICON -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230f172a'/><g transform='skewX(-14)' font-family='Arial Black, sans-serif' font-weight='900' font-size='62'><text x='24' y='64' fill='%23ffffff'>E</text><text x='58' y='76' fill='%2322c55e'>E</text></g></svg>">
+
+  <style>
+    :root {
+      --mar-fondo: #0f172a;       
+      --mar-tarjeta: #1e293b;     
+      --selva: #22c55e;           
+      --cielo: #ffffff;           
+      --cielo-tenue: #94a3b8;     
+      --border: #334155;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+
+    body {
+      background-color: var(--mar-fondo);
+      color: var(--cielo);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* BANNER SUPERIOR */
+    .top-banner {
+      width: 100%;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-brand {
+      font-size: 1.2rem;
+      font-weight: 900;
+      font-style: italic;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
+      gap: 1px;
+    }
+
+    .nav-brand .brand-cheeta { color: var(--cielo); transform: translateY(-1px); }
+    .nav-brand .brand-flex { color: var(--selva); transform: translateY(1px); }
+    .nav-brand .brand-tm {
+      font-size: 0.45rem;
+      font-weight: 700;
+      font-style: normal;
+      color: var(--cielo-tenue);
+      opacity: 0.6;
+      margin-left: 2px;
+      align-self: flex-start;
+    }
+
+    .home-btn {
+      background-color: var(--mar-tarjeta);
+      border: 1px solid var(--border);
+      color: var(--cielo);
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .home-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+      transition: transform 0.2s ease;
+    }
+
+    .home-btn:hover {
+      background-color: var(--selva);
+      border-color: var(--selva);
+      color: var(--mar-fondo);
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(34, 197, 94, 0.35);
+    }
+
+    .home-btn:hover svg {
+      transform: scale(1.1);
+    }
+
+    /* CONTENEDOR PRINCIPAL / MENSAJE */
+    .main-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .message-card {
+      background-color: var(--mar-tarjeta);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 30px;
+      text-align: center;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .emoji-3d-img {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.35));
+      margin-bottom: 4px;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    h1 {
+      font-size: clamp(1.5rem, 4vw, 1.9rem);
+      font-weight: 900;
+      color: var(--cielo);
+      letter-spacing: -0.5px;
+    }
+
+    p {
+      color: var(--cielo-tenue);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .btn-action {
+      margin-top: 10px;
+      background-color: transparent;
+      border: 1px solid var(--selva);
+      color: var(--selva);
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-action:hover {
+      background-color: var(--selva);
+      color: var(--mar-fondo);
+      box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BANNER SUPERIOR -->
+  <header class="top-banner">
+    <a href="https://cheetaflex.com" class="nav-brand">
+      <span class="brand-cheeta">CHEETA</span><span class="brand-flex">FLEX</span><sup class="brand-tm">TM</sup>
+    </a>
+
+    <a href="https://cheetaflex.com" class="home-btn" aria-label="Volver al inicio">
+      <!-- Icono de casita (Home) -->
+      <svg viewBox="0 0 24 24">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+      </svg>
+    </a>
+  </header>
+
+  <!-- CONTENIDO CENTRAL -->
+  <main class="main-content">
+    <div class="message-card">
+      <img 
+        src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Wrench/3D/wrench_3d.png" 
+        alt="Herramienta 3D" 
+        class="emoji-3d-img" 
+        loading="lazy"
+        onerror="this.onerror=null; this.src='https://em-content.zobj.net/source/microsoft-3d-fluent/3591/wrench_1f527.png';"
+      >
+      <h1>ESTAMOS TRABAJANDO</h1>
+      <p>Gracias por visitarnos.</p>
+      
+      <a href="https://cheetaflex.com" class="btn-action">Volver al Hub principal</a>
+    </div>
+  </main>
+
+</body>
+</html>
